@@ -9,6 +9,7 @@
 import Foundation
 
 typealias JSONParserCallback = (Bool, [Tweet]?) -> ()
+typealias JSONParserCallback1 = (Bool, User?) -> ()
 
 class JSONParser {
     
@@ -16,7 +17,7 @@ class JSONParser {
         
         guard let tweetJSONPath = Bundle.main.url(forResource: "tweet", withExtension: "json")
             else {
-                fatalError("Tweet,json does not exist in this bundle") }
+                fatalError("Tweet.json does not exist in this bundle") }
         
         do {
             let tweetJSONData = try Data(contentsOf: tweetJSONPath)
@@ -47,6 +48,20 @@ class JSONParser {
             }
         } catch {
             print("Error Serializing JSON")
+            callback(false, nil)
+        }
+        
+    }
+    
+    class func tweetJSONParser(data: Data, callback: JSONParserCallback1) {
+        do {
+            if let userJSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]
+            {
+                let user = User(json: userJSON)
+                callback(true, user)
+            }
+        } catch {
+            print("Error serializing JSON")
             callback(false, nil)
         }
         
