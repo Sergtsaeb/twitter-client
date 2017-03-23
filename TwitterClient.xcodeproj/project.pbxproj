@@ -18,6 +18,9 @@
 		C012C43F1E8077FC0081263C /* HomeTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C43E1E8077FC0081263C /* HomeTimelineViewController.swift */; };
 		C012C4411E8098610081263C /* Tweets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C4401E8098610081263C /* Tweets.swift */; };
 		C012C4431E819E970081263C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C4421E819E970081263C /* API.swift */; };
+		C012C4491E82F9E90081263C /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C4481E82F9E90081263C /* TweetCell.swift */; };
+		C012C44B1E8318F10081263C /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C44A1E8318F10081263C /* TweetDetailViewController.swift */; };
+		C012C44D1E8325400081263C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C44C1E8325400081263C /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		C012C43E1E8077FC0081263C /* HomeTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeTimelineViewController.swift; path = TwitterClient/HomeTimelineViewController.swift; sourceTree = "<group>"; };
 		C012C4401E8098610081263C /* Tweets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tweets.swift; path = TwitterClient/Tweets.swift; sourceTree = "<group>"; };
 		C012C4421E819E970081263C /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = TwitterClient/API.swift; sourceTree = "<group>"; };
+		C012C4481E82F9E90081263C /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
+		C012C44A1E8318F10081263C /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
+		C012C44C1E8325400081263C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,9 +74,9 @@
 			children = (
 				C012C42B1E803F050081263C /* Assets.xcassets */,
 				C012C42D1E803F050081263C /* LaunchScreen.storyboard */,
-				C012C4451E81F8D70081263C /* Model */,
-				C012C4461E81F8E40081263C /* View */,
 				C012C4471E81F8EC0081263C /* Controller */,
+				C012C4461E81F8E40081263C /* View */,
+				C012C4451E81F8D70081263C /* Model */,
 			);
 			path = TwitterClient;
 			sourceTree = "<group>";
@@ -80,6 +86,7 @@
 			children = (
 				C012C4301E803F050081263C /* Info.plist */,
 				C012C4361E8052AF0081263C /* tweet.json */,
+				C012C4481E82F9E90081263C /* TweetCell.swift */,
 				C012C4241E803F050081263C /* AppDelegate.swift */,
 				C012C4421E819E970081263C /* API.swift */,
 				C012C43C1E806DE50081263C /* JSONParser.swift */,
@@ -104,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				C012C43E1E8077FC0081263C /* HomeTimelineViewController.swift */,
+				C012C44A1E8318F10081263C /* TweetDetailViewController.swift */,
+				C012C44C1E8325400081263C /* ProfileViewController.swift */,
 			);
 			name = Controller;
 			path = ..;
@@ -185,7 +194,10 @@
 			files = (
 				C012C43B1E8054130081263C /* User.swift in Sources */,
 				C012C43D1E806DE50081263C /* JSONParser.swift in Sources */,
+				C012C44D1E8325400081263C /* ProfileViewController.swift in Sources */,
+				C012C44B1E8318F10081263C /* TweetDetailViewController.swift in Sources */,
 				C012C4391E8053FF0081263C /* Tweet.swift in Sources */,
+				C012C4491E82F9E90081263C /* TweetCell.swift in Sources */,
 				C012C4251E803F050081263C /* AppDelegate.swift in Sources */,
 				C012C43F1E8077FC0081263C /* HomeTimelineViewController.swift in Sources */,
 				C012C4411E8098610081263C /* Tweets.swift in Sources */,

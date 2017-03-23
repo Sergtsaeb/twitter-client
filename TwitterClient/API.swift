@@ -10,6 +10,16 @@ import Foundation
 import Accounts
 import Social
 
+
+//enum Callback {
+//    case Accounts(ACAccount?)
+//    case User(User?)
+//    case Tweets([Tweet]?)
+//}
+//
+//typealias babyGotBack = (Callback) -> ()
+
+
 typealias AccountsCallback = (ACAccount?) -> ()
 typealias UserCallback = (User?) -> ()
 typealias TweetsCallback = ([Tweet]?) -> ()
@@ -27,13 +37,13 @@ class API {
             if let error = error {
                 print("Error: \(error.localizedDescription)")
                 callback(nil)
-                return
+                return //breaks out of the entire callback
             }
             
             if success {
                 if let account = accountStore.accounts(with: accountType).first as? ACAccount {
                     callback(account)
-                    }
+                }
             } else {
                 print("The user did not allow access to their account")
                 callback(nil)
@@ -121,17 +131,20 @@ class API {
             login(callback: { (account) in
                 if let account = account {
                     self.account = account
-                    self.updateTimeline(callback: { (tweets) in
-                        callback(tweets)
-                    })
+                    self.updateTimeline(callback: callback)
+//                    self.updateTimeline(callback: { (tweets) in
+//                        callback(tweets)
+//                    })
                 }
             })
         } else {
-            self.updateTimeline(callback: { (tweets) in
-                callback(tweets)
-                
-            //self.updateTimeLine(callback: callback)
-            })
+            self.updateTimeline(callback: callback)
+        }
+    }
+    
+    func getUserInfo(callback: @escaping UserCallback) {
+        self.getOAuthUser { (user) in
+            callback(user)
         }
     }
     

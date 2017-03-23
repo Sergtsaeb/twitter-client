@@ -9,6 +9,7 @@
 import Foundation
 
 class User {
+    
     let name: String
     let profileImageURL: String
     let location: String
