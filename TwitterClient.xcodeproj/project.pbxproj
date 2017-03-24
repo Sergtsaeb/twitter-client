@@ -21,6 +21,10 @@
 		C012C4491E82F9E90081263C /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C4481E82F9E90081263C /* TweetCell.swift */; };
 		C012C44B1E8318F10081263C /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C44A1E8318F10081263C /* TweetDetailViewController.swift */; };
 		C012C44D1E8325400081263C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C44C1E8325400081263C /* ProfileViewController.swift */; };
+		C012C4511E844DEA0081263C /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C4501E844DE90081263C /* UIExtensions.swift */; };
+		C012C4541E8467D80081263C /* TweetNibCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C4521E8467D80081263C /* TweetNibCell.swift */; };
+		C012C4551E8467D80081263C /* TweetNibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C012C4531E8467D80081263C /* TweetNibCell.xib */; };
+		C012C4571E84A28C0081263C /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C012C4561E84A28C0081263C /* FeedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		C012C4481E82F9E90081263C /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		C012C44A1E8318F10081263C /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		C012C44C1E8325400081263C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C012C4501E844DE90081263C /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		C012C4521E8467D80081263C /* TweetNibCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetNibCell.swift; sourceTree = "<group>"; };
+		C012C4531E8467D80081263C /* TweetNibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetNibCell.xib; sourceTree = "<group>"; };
+		C012C4561E84A28C0081263C /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +94,8 @@
 			children = (
 				C012C4301E803F050081263C /* Info.plist */,
 				C012C4361E8052AF0081263C /* tweet.json */,
+				C012C4531E8467D80081263C /* TweetNibCell.xib */,
+				C012C4521E8467D80081263C /* TweetNibCell.swift */,
 				C012C4481E82F9E90081263C /* TweetCell.swift */,
 				C012C4241E803F050081263C /* AppDelegate.swift */,
 				C012C4421E819E970081263C /* API.swift */,
@@ -93,6 +103,7 @@
 				C012C4401E8098610081263C /* Tweets.swift */,
 				C012C4381E8053FF0081263C /* Tweet.swift */,
 				C012C43A1E8054130081263C /* User.swift */,
+				C012C4501E844DE90081263C /* UIExtensions.swift */,
 			);
 			name = Model;
 			path = ..;
@@ -113,6 +124,7 @@
 				C012C43E1E8077FC0081263C /* HomeTimelineViewController.swift */,
 				C012C44A1E8318F10081263C /* TweetDetailViewController.swift */,
 				C012C44C1E8325400081263C /* ProfileViewController.swift */,
+				C012C4561E84A28C0081263C /* FeedViewController.swift */,
 			);
 			name = Controller;
 			path = ..;
@@ -180,6 +192,7 @@
 			files = (
 				C012C42F1E803F050081263C /* LaunchScreen.storyboard in Resources */,
 				C012C42C1E803F050081263C /* Assets.xcassets in Resources */,
+				C012C4551E8467D80081263C /* TweetNibCell.xib in Resources */,
 				C012C42A1E803F050081263C /* Main.storyboard in Resources */,
 				C012C4371E8052AF0081263C /* tweet.json in Resources */,
 			);
@@ -197,11 +210,14 @@
 				C012C44D1E8325400081263C /* ProfileViewController.swift in Sources */,
 				C012C44B1E8318F10081263C /* TweetDetailViewController.swift in Sources */,
 				C012C4391E8053FF0081263C /* Tweet.swift in Sources */,
+				C012C4511E844DEA0081263C /* UIExtensions.swift in Sources */,
 				C012C4491E82F9E90081263C /* TweetCell.swift in Sources */,
 				C012C4251E803F050081263C /* AppDelegate.swift in Sources */,
 				C012C43F1E8077FC0081263C /* HomeTimelineViewController.swift in Sources */,
 				C012C4411E8098610081263C /* Tweets.swift in Sources */,
 				C012C4431E819E970081263C /* API.swift in Sources */,
+				C012C4571E84A28C0081263C /* FeedViewController.swift in Sources */,
+				C012C4541E8467D80081263C /* TweetNibCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
