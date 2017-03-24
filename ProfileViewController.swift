@@ -10,34 +10,24 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    var user: User!
+    var user: User? {
+        didSet {
+            self.name.text = user?.name
+            self.location.text = user?.location
+            self.profileImageURL.text = user?.profileImageURL
+        }
+    }
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var profileImageURL: UILabel!
     
-//    var name = profile.name
-//    var location = User()?.location
-//    var profileImgURL = User()?.profileImageURL
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getUser()
-    }
-    
-    
-    func getUser() {
         API.shared.getUserInfo { (user) in
-            OperationQueue.main.addOperation {
-                self.user = user
-                self.name.text = user?.name
-                self.location.text = user?.location
-                self.profileImageURL.text = user?.profileImageURL
-            }
+            self.user = user
         }
     }
-
-  
 
 }

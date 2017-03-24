@@ -11,50 +11,50 @@ import Foundation
 
 class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    
-//    @IBAction func profile(_ sender: Any) {
-//        
-//        
-//    }
     
     var allTweets = [Tweet]() {
         didSet {
             self.tableView.reloadData()
         }
     }
-   
+    
+    var userProfile: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "My Timeline"
-        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
+        let tweetNib = UINib(nibName: "TweetNibCell", bundle: nil)
+        
+        self.tableView.register(tweetNib, forCellReuseIdentifier: TweetNibCell.identifier)
+        
+        self.navigationItem.title = "My Timeline"
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         updateTimeline()
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if segue.identifier == "showDetailSegue" {
+        if segue.identifier == TweetDetailViewController.identifier {
+            
             if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                 let selectedTweet = self.allTweets[selectedIndex]
-                
                 guard let destinationController = segue.destination as? TweetDetailViewController else { return }
                 
                 destinationController.tweet = selectedTweet
             }
-            
-            
+        }
+        
+        if segue.identifier == "profileSegue" {
+            guard let destinationController = segue.destination as? ProfileViewController else { return }
         }
         
     }
@@ -71,18 +71,18 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         }
         // Creates a serial queue
         OperationQueue.main.maxConcurrentOperationCount = 1
+        
+        
     }
-    
     
    
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("Selected row at \(indexPath.row)")
-//        
-////        if Tweet.init(json: "retweeted_status") == Tweet.retweeted_status {
-////            
-////        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selected row at \(indexPath.row)")
+        
+        self.performSegue(withIdentifier: TweetDetailViewController.identifier, sender: nil)
+        
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,17 +92,20 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: TweetNibCell.identifier, for: indexPath) as! TweetNibCell
     
-        if let cell = cell as? TweetCell {
-            
-            cell.tweetText?.text  = allTweets[indexPath.row].text
-            
-            let currentTweet = allTweets[indexPath.row]
-            
-            cell.textLabel?.text = currentTweet.text
-            cell.detailTextLabel?.text = currentTweet.user?.name
-        }
+        let tweet = self.allTweets[indexPath.row]
+        cell.tweet = tweet
+        
+//        if let cell = cell as? TweetCell {
+//            
+//            cell.tweetText?.text  = allTweets[indexPath.row].text
+//            
+//            let currentTweet = allTweets[indexPath.row]
+//            
+//            cell.textLabel?.text = currentTweet.text
+//            cell.detailTextLabel?.text = currentTweet.user?.name
+//        }
         
         return cell
     }

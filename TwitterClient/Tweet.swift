@@ -16,6 +16,9 @@ class Tweet {
     var retweeted: Bool = false
     
     init?(json: [String: Any]) {
+        
+//        print(json) // prints JSON after its been serialized, Cmd + F to search console log
+        
         // if this is a retweet
         if let text = json["text"] as? String, let id = json["id_str"] as? String {
             self.text = text
@@ -25,10 +28,9 @@ class Tweet {
                 self.user = User(json: userDictionary)
             }
             
-            if let _ = json["retweeted_status"] as? [String: AnyObject] {
+            if let _ = json["retweeted_status"] as? [String: Any] {
                 self.retweeted = true
             }
-            
             
         } else {
             return nil
