@@ -74,7 +74,6 @@ class API {
                     JSONParser.tweetJSONParser(data: data, callback: { (success, user) in
                         callback(user)
                     })
-                    
                     print("Success: \(response.statusCode) \(data.description)")
                 case 300...399:
                     print("Error: response came back with statusCode: \(response.statusCode)")
@@ -94,8 +93,6 @@ class API {
     }
     
     private func updateTimeline(url: String, callback: @escaping TweetsCallback) {
-        
-//        let url = URL(string: "")
         
         if let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .GET, url: URL(string: url), parameters: nil) {
             
@@ -157,9 +154,9 @@ class API {
     }
     
     
-    func getTweetsFor(_ user: String, callback: @escaping TweetsCallback) {
+    func getTweetsFor(_ screenName: String, callback: @escaping TweetsCallback) {
         
-        let urlString = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=\(user)"
+        let urlString = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=\(screenName)"
         
         self.updateTimeline(url: urlString) { (tweets) in
             callback(tweets)

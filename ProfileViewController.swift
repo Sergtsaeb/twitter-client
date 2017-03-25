@@ -14,20 +14,21 @@ class ProfileViewController: UIViewController {
         didSet {
             self.name.text = user?.name
             self.location.text = user?.location
-            self.profileImageURL.text = user?.profileImageURL
+            UIImage.fetchImageWith((user?.profileImageURL)!) { (profilePic) in
+                self.profileImageView.image = profilePic
+            }
+        
         }
     }
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var location: UILabel!
-    @IBOutlet weak var profileImageURL: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        API.shared.getUserInfo { (user) in
-            self.user = user
-        }
+        
     }
 
 }

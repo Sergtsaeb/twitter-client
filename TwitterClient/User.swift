@@ -24,7 +24,7 @@ class User {
             let screenName = json["screen_name"] as? String {
             
             self.name = name
-            self.profileImageURL = profileImageURL
+            self.profileImageURL = profileImageURL.replacingOccurrences(of: "_normal", with: "")
             self.location = location
             self.screenName = screenName
             

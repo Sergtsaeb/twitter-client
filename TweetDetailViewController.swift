@@ -17,23 +17,38 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetedStatus: UILabel!
     @IBOutlet weak var userName: UILabel!
     
+    @IBOutlet weak var userImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUp()
-    }
+}
     
     func setUp() {
         self.text.text = tweet.text
         self.id.text = tweet.id
         self.retweetedStatus.text = tweet.retweeted.description
         self.userName.text = tweet.user?.screenName
-        
+        UIImage.fetchImageWith((tweet.user?.profileImageURL)!) { (image) in
+            if let image = image {
+                self.userImageView.image = image
+            }
+        }
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "feedSegue" {
             guard let destinationViewController = segue.destination as? FeedViewController else {return}
+            
+            API.shared.getTweetsFor((tweet.user?.screenName)!) { (tweets) in
+                if let tweets = tweets {
+                    destinationViewController.tweets = tweets
+                }
+                OperationQueue.main.addOperation {}
+                    
+            }
         }
     }
 

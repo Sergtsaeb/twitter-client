@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -27,6 +27,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        self.navigationController?.delegate = self
         
         let tweetNib = UINib(nibName: "TweetNibCell", bundle: nil)
         
@@ -36,6 +37,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
+
         updateTimeline()
     }
     
@@ -53,9 +55,16 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
             }
         }
         
-        if segue.identifier == "profileSegue" {
+        if segue.identifier == ProfileViewController.identifier {
             guard let destinationController = segue.destination as? ProfileViewController else { return }
+            
+            API.shared.getUserInfo(callback: { (user) in
+                destinationController.user = user
+            })
+            
+            
         }
+        
         
     }
     
@@ -97,22 +106,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         let tweet = self.allTweets[indexPath.row]
         cell.tweet = tweet
         
-//        if let cell = cell as? TweetCell {
-//            
-//            cell.tweetText?.text  = allTweets[indexPath.row].text
-//            
-//            let currentTweet = allTweets[indexPath.row]
-//            
-//            cell.textLabel?.text = currentTweet.text
-//            cell.detailTextLabel?.text = currentTweet.user?.name
-//        }
-        
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        
-//    }
-
-        
 }
