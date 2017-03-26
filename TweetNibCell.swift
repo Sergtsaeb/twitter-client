@@ -27,11 +27,5 @@ class TweetNibCell: UITableViewCell {
            
         }
     }
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
 
 }

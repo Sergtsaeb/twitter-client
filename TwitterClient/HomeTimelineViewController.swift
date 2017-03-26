@@ -21,7 +21,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     var userProfile: User?
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,10 +37,8 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-
         updateTimeline()
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -80,11 +78,8 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         }
         // Creates a serial queue
         OperationQueue.main.maxConcurrentOperationCount = 1
-        
-        
     }
     
-   
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected row at \(indexPath.row)")
