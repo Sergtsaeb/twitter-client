@@ -23,7 +23,7 @@ class TweetDetailViewController: UIViewController {
         super.viewDidLoad()
         
         setUp()
-}
+    }
     
     func setUp() {
         self.text.text = tweet.text
@@ -39,17 +39,15 @@ class TweetDetailViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "feedSegue" {
-            guard let destinationViewController = segue.destination as? FeedViewController else {return}
+            let tweetUser = tweet.user
             
-            API.shared.getTweetsFor((tweet.user?.screenName)!) { (tweets) in
-                if let tweets = tweets {
-                    destinationViewController.tweets = tweets
-                }
-                OperationQueue.main.addOperation {}
-                    
+            if let destinationViewController = segue.destination as? FeedViewController {
+                destinationViewController.newUser = tweetUser
+                
+                
             }
         }
     }
-
 }

@@ -10,6 +10,8 @@ import UIKit
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var newUser: User!
+    
     var tweets = [Tweet]() {
         didSet {
 //            print(tweets.first?.user)
@@ -23,6 +25,23 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        let tweetNib = UINib(nibName: "TweetNibCell", bundle: nil)
+        self.tableView.register(tweetNib, forCellReuseIdentifier: TweetNibCell.identifier)
+        
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        update()
+    }
+    
+    func update() {
+        API.shared.getTweetsFor(newUser.screenName) { (tweets) in
+            if tweets != nil {
+                OperationQueue.main.addOperation {
+                    self.tweets = tweets!
+                }
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,6 +57,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
     }
+    
    
 }
 
