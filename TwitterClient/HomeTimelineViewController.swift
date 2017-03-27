@@ -57,8 +57,13 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         titleImageView.contentMode = .scaleAspectFit
     }
     
+    func test() {
+        performSegue(withIdentifier: ProfileViewController.identifier, sender: nil)
+    }
+    
     private func setUpProfileButton() {
         let profileButton = UIButton(type: .system)
+        profileButton.addTarget(self, action: #selector(HomeTimelineViewController.test), for: .touchUpInside)
         profileButton.setImage(#imageLiteral(resourceName: "meIcon").withRenderingMode(.alwaysOriginal), for: .normal)
         profileButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileButton)
@@ -85,9 +90,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
                 destinationController.user = user
             })
             
-            
         }
-        
         
     }
     
