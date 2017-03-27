@@ -81,7 +81,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="118"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitPic" translatesAutoresizingMaskIntoConstraints="NO" id="fbb-xd-cjW">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fbb-xd-cjW">
                                             <rect key="frame" x="0.0" y="-37" width="375" height="166"/>
                                         </imageView>
                                     </subviews>
@@ -98,18 +98,18 @@
                                         <rect key="frame" x="0.0" y="146" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bpc-Kt-rKN" id="eXG-pe-Mwn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RjR-kS-7oo">
-                                                    <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OaB-mw-GTo">
-                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -169,12 +169,21 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qhH-vX-UYz" customClass="TweetNibCell" customModule="TwitterClient" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="qhH-vX-UYz" customClass="TweetNibCell" customModule="TwitterClient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qhH-vX-UYz" id="3pq-bv-ybZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="tweetText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvh-kg-XA6">
+                                                    <rect key="frame" x="26" y="11" width="75" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -194,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JDn-lK-UPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2990" y="90"/>
+            <point key="canvasLocation" x="2989.5" y="89.5"/>
         </scene>
         <!--Tweet Detail View Controller-->
         <scene sceneID="oDa-qz-ufr">
@@ -208,19 +217,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWg-u7-OAB">
-                                <rect key="frame" x="16" y="72" width="78.5" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Y7-gn-6z0">
-                                <rect key="frame" x="287" y="72" width="72" height="30"/>
-                                <state key="normal" title="View Feed"/>
-                                <connections>
-                                    <segue destination="5qo-ug-oga" kind="show" identifier="feedSegue" id="iVa-O7-P7G"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DOU-SP-9KA">
                                 <rect key="frame" x="16" y="269" width="343" height="398"/>
                                 <subviews>
@@ -258,25 +254,32 @@
                                     <constraint firstItem="Jv2-7U-hDD" firstAttribute="top" secondItem="Hps-I8-gNx" secondAttribute="bottom" id="woE-9f-F0M"/>
                                 </constraints>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NOc-Gm-Lqk">
-                                <rect key="frame" x="0.0" y="109" width="375" height="150"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NOc-Gm-Lqk">
+                                <rect key="frame" x="0.0" y="113" width="375" height="146"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="userName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWg-u7-OAB">
+                                <rect key="frame" x="16" y="77" width="123" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Y7-gn-6z0">
+                                <rect key="frame" x="217" y="72" width="158" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="View Feed"/>
+                                <connections>
+                                    <segue destination="5qo-ug-oga" kind="show" identifier="feedSegue" id="iVa-O7-P7G"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="NOc-Gm-Lqk" secondAttribute="trailing" id="5bk-UF-ofd"/>
-                            <constraint firstItem="NOc-Gm-Lqk" firstAttribute="top" secondItem="XWg-u7-OAB" secondAttribute="bottom" constant="7" id="8Er-mi-h8l"/>
-                            <constraint firstItem="NOc-Gm-Lqk" firstAttribute="top" secondItem="3Y7-gn-6z0" secondAttribute="bottom" constant="7" id="C8g-fO-wAo"/>
                             <constraint firstItem="D5b-DP-Pt8" firstAttribute="top" secondItem="DOU-SP-9KA" secondAttribute="bottom" id="CP3-FO-ZkT"/>
-                            <constraint firstItem="DOU-SP-9KA" firstAttribute="top" secondItem="NOc-Gm-Lqk" secondAttribute="bottom" constant="10" id="F8X-Pw-VBu"/>
-                            <constraint firstItem="XWg-u7-OAB" firstAttribute="top" secondItem="5Yc-4r-pmC" secondAttribute="bottom" constant="8" id="Mwl-KA-nCf"/>
-                            <constraint firstItem="3Y7-gn-6z0" firstAttribute="top" secondItem="5Yc-4r-pmC" secondAttribute="bottom" constant="8" id="ftC-8y-aG0"/>
-                            <constraint firstItem="XWg-u7-OAB" firstAttribute="leading" secondItem="SdN-HZ-lfV" secondAttribute="leadingMargin" id="gJW-tH-bPd"/>
                             <constraint firstItem="DOU-SP-9KA" firstAttribute="top" secondItem="5Yc-4r-pmC" secondAttribute="bottom" constant="205" id="hS4-pm-EnP"/>
-                            <constraint firstAttribute="trailing" secondItem="3Y7-gn-6z0" secondAttribute="trailing" constant="16" id="loT-OL-NBm"/>
                             <constraint firstItem="DOU-SP-9KA" firstAttribute="leading" secondItem="SdN-HZ-lfV" secondAttribute="leadingMargin" id="q8I-Vh-dLL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DOU-SP-9KA" secondAttribute="trailing" id="qm7-ya-eQB"/>
-                            <constraint firstItem="NOc-Gm-Lqk" firstAttribute="leading" secondItem="SdN-HZ-lfV" secondAttribute="leading" id="wV6-sS-YSX"/>
                         </constraints>
                     </view>
                     <connections>
@@ -289,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCP-up-g0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2018" y="90"/>
+            <point key="canvasLocation" x="2020" y="89.505247376311857"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1b4-D5-RyK">
@@ -310,7 +313,4 @@
             <point key="canvasLocation" x="289" y="90"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="twitPic" width="333" height="333"/>
-    </resources>
 </document>

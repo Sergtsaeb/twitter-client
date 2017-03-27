@@ -21,7 +21,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     var userProfile: User?
-
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,8 +37,31 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-
+        setUpNavigationBarItems()
         updateTimeline()
+        
+    }
+    private func setUpNavigationBarItems() {
+        setUpTitleImage()
+        setUpProfileButton()
+       
+        
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.isTranslucent = false
+    }
+    
+    private func setUpTitleImage() {
+        let titleImageView = UIImageView(image: #imageLiteral(resourceName: "title_icon"))
+        navigationItem.titleView = titleImageView
+        titleImageView.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        titleImageView.contentMode = .scaleAspectFit
+    }
+    
+    private func setUpProfileButton() {
+        let profileButton = UIButton(type: .system)
+        profileButton.setImage(#imageLiteral(resourceName: "meIcon").withRenderingMode(.alwaysOriginal), for: .normal)
+        profileButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileButton)
     }
     
     
@@ -80,11 +103,8 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         }
         // Creates a serial queue
         OperationQueue.main.maxConcurrentOperationCount = 1
-        
-        
     }
     
-   
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected row at \(indexPath.row)")
