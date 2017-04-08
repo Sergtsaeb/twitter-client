@@ -8,11 +8,14 @@
 
 import UIKit
 import Foundation
+import FoldingCell
 
-class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate {
+class HomeTimelineViewController: UIViewController,UINavigationControllerDelegate {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    
+    var cellHeights = (100..<280).map { _ in C.CellHeight.close }
     
     var allTweets = [Tweet]() {
         didSet {
@@ -22,16 +25,21 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     
     var userProfile: User?
   
+    fileprivate struct C {
+        struct CellHeight {
+            static let close: CGFloat = 100 // equal or greater foregroundView height
+            static let open: CGFloat = 280 // equal or greater containerView height
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.navigationController?.delegate = self
         
-        let tweetNib = UINib(nibName: "TweetNibCell", bundle: nil)
-        
-        self.tableView.register(tweetNib, forCellReuseIdentifier: TweetNibCell.identifier)
+        let tweetNib = UINib(nibName: "MyFoldingCell", bundle: Bundle.main)
+        self.tableView.register(tweetNib, forCellReuseIdentifier: MyFoldingCell.identifier)
         
         self.navigationItem.title = "My Timeline"
         self.tableView.estimatedRowHeight = 100
@@ -95,7 +103,6 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func updateTimeline() {
-        
         self.activityIndicator.startAnimating()
         
         API.shared.getTweets { (tweets) in
@@ -108,12 +115,51 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         OperationQueue.main.maxConcurrentOperationCount = 1
     }
     
+  }
+
+//MARK: MyFoldingCellDelegate
+extension HomeTimelineViewController: MyFoldingCellDelegate {
+    func didTapMoreDetail(_ sender: Any?) {
+        performSegue(withIdentifier: TweetDetailViewController.identifier, sender: sender)
+    }
+}
+
+//MARK: UITableViewDelegate
+extension HomeTimelineViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeights[indexPath.row]
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cell = cell as? MyFoldingCell {
+            if cellHeights[indexPath.row] == C.CellHeight.close {
+                cell.selectedAnimation(false, animated: false, completion: nil)
+            } else {
+                cell.selectedAnimation(true, animated: false, completion: nil)
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected row at \(indexPath.row)")
+        guard let cell = tableView.cellForRow(at: indexPath) as? MyFoldingCell else {
+            return
+        }
+        var duration = 0.0
+        if cellHeights[indexPath.row] == 100 {
+            cellHeights[indexPath.row] = 280
+            cell.selectedAnimation(true, animated: true, completion: nil)
+            duration = 0.5
+        } else {
+            // close
+            cellHeights[indexPath.row] = 100
+            cell.selectedAnimation(false, animated: true, completion: nil)
+            duration = 0.8
+        }
         
-        self.performSegue(withIdentifier: TweetDetailViewController.identifier, sender: nil)
-        
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }, completion: nil)
     }
     
     
@@ -124,12 +170,13 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: TweetNibCell.identifier, for: indexPath) as! TweetNibCell
-    
+        let cell = tableView.dequeueReusableCell(withIdentifier: MyFoldingCell.identifier, for: indexPath) as! MyFoldingCell
+        cell.delegate = self
         let tweet = self.allTweets[indexPath.row]
         cell.tweet = tweet
-        
+        cell.backViewColor = UIColor(red: 181/255, green: 180/255, blue: 193/255, alpha: 0.7)
         return cell
     }
-    
 }
+
+
