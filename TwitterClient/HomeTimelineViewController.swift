@@ -8,11 +8,17 @@
 
 import UIKit
 import Foundation
+import FoldingCell
 
 class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    
+
+    let kRowsCount = 10
+    
+    var cellHeights = (100..<150).map { _ in C.CellHeight.close }
     
     var allTweets = [Tweet]() {
         didSet {
@@ -22,16 +28,24 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     
     var userProfile: User?
   
+    fileprivate struct C {
+        struct CellHeight {
+            static let close: CGFloat = 100 // equal or greater foregroundView height
+            static let open: CGFloat = 150 // equal or greater containerView height
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.navigationController?.delegate = self
         
-        let tweetNib = UINib(nibName: "TweetNibCell", bundle: nil)
         
-        self.tableView.register(tweetNib, forCellReuseIdentifier: TweetNibCell.identifier)
+        let tweetNib = UINib(nibName: MyFoldingCell.identifier, bundle: nil)
+        self.tableView.register(tweetNib, forCellReuseIdentifier: MyFoldingCell.identifier)
+//        let tweetNib = UINib(nibName: "TweetNibCell", bundle: nil)
+//        self.tableView.register(tweetNib, forCellReuseIdentifier: TweetNibCell.identifier)
         
         self.navigationItem.title = "My Timeline"
         self.tableView.estimatedRowHeight = 100
@@ -95,7 +109,6 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func updateTimeline() {
-        
         self.activityIndicator.startAnimating()
         
         API.shared.getTweets { (tweets) in
@@ -108,12 +121,44 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         OperationQueue.main.maxConcurrentOperationCount = 1
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeights[indexPath.row]
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cell = cell as? FoldingCell {
+            if cellHeights[indexPath.row] == C.CellHeight.close {
+                cell.selectedAnimation(false, animated: false, completion: nil)
+            } else {
+                cell.selectedAnimation(true, animated: false, completion: nil)
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected row at \(indexPath.row)")
         
-        self.performSegue(withIdentifier: TweetDetailViewController.identifier, sender: nil)
+//        self.performSegue(withIdentifier: TweetDetailViewController.identifier, sender: nil)
         
+        guard let cell = tableView.cellForRow(at: indexPath) as? FoldingCell else {
+            return
+        }
+        var duration = 0.0
+        if cellHeights[indexPath.row] == 100 {
+            cellHeights[indexPath.row] = 150
+            cell.selectedAnimation(true, animated: true, completion: nil)
+            duration = 0.5
+        } else {
+            // close
+            cellHeights[indexPath.row] = 100
+            cell.selectedAnimation(false, animated: true, completion: nil)
+            duration = 1.1
+        }
+        
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: { 
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }, completion: nil)
     }
     
     
@@ -124,10 +169,11 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: TweetNibCell.identifier, for: indexPath) as! TweetNibCell
-    
+//        let cell = tableView.dequeueReusableCell(withIdentifier: TweetNibCell.identifier, for: indexPath) as! TweetNibCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MyFoldingCell.identifier, for: indexPath) as! FoldingCell
+        
         let tweet = self.allTweets[indexPath.row]
-        cell.tweet = tweet
+//        cell.tweet = tweet
         
         return cell
     }
