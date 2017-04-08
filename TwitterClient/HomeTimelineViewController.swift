@@ -156,7 +156,7 @@ extension HomeTimelineViewController: UITableViewDataSource, UITableViewDelegate
             duration = 0.8
         }
         
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: {
             tableView.beginUpdates()
             tableView.endUpdates()
         }, completion: nil)
@@ -174,7 +174,7 @@ extension HomeTimelineViewController: UITableViewDataSource, UITableViewDelegate
         cell.delegate = self
         let tweet = self.allTweets[indexPath.row]
         cell.tweet = tweet
-        
+        cell.backViewColor = UIColor(red: 181/255, green: 180/255, blue: 193/255, alpha: 0.7)
         return cell
     }
 }

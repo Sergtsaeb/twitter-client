@@ -42,7 +42,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                        <color key="backgroundColor" red="0.62121661167210884" green="0.73133597192993205" blue="0.67470050515306124" alpha="0.86779047818791943" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="E9H-rb-LxL" firstAttribute="leading" secondItem="mgf-BC-0Vg" secondAttribute="trailing" constant="8" id="0Zu-O0-BLe"/>
                             <constraint firstItem="h42-YC-P6M" firstAttribute="top" secondItem="E9H-rb-LxL" secondAttribute="bottom" constant="8" id="4ga-ul-iHf"/>
@@ -55,9 +55,15 @@
                             <constraint firstAttribute="trailing" secondItem="E9H-rb-LxL" secondAttribute="trailing" constant="8" id="uTl-ff-NHL"/>
                             <constraint firstItem="mgf-BC-0Vg" firstAttribute="top" secondItem="VMD-ix-LOa" secondAttribute="top" constant="8" id="yua-ge-eIa"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gb8-RL-EOO">
-                        <rect key="frame" x="10" y="108" width="300" height="240"/>
+                        <rect key="frame" x="10" y="88" width="300" height="240"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="retweeted" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwA-qr-2cu">
                                 <rect key="frame" x="226.5" y="215" width="65.5" height="17"/>
@@ -87,7 +93,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBound" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ia7-qn-Hlg">
@@ -99,7 +105,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.65490196079999996" green="0.67450980390000004" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.71115727542585028" green="0.70735419165510205" blue="0.75834583838435365" alpha="0.77016044463087252" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Eec-GV-dTK" firstAttribute="top" secondItem="trj-6l-hgy" secondAttribute="bottom" constant="8" id="2OR-x1-bRP"/>
                             <constraint firstItem="nI5-Rc-hog" firstAttribute="top" secondItem="Eec-GV-dTK" secondAttribute="bottom" constant="8" id="4Da-M1-E0T"/>
@@ -118,12 +124,18 @@
                             <constraint firstAttribute="height" constant="240" id="nfd-5E-M4C"/>
                             <constraint firstItem="nI5-Rc-hog" firstAttribute="centerX" secondItem="gb8-RL-EOO" secondAttribute="centerX" id="tDO-as-JY1"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="VMD-ix-LOa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="8f1-8p-jfb"/>
                     <constraint firstItem="VMD-ix-LOa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Bb3-AP-cyq"/>
-                    <constraint firstItem="gb8-RL-EOO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="100" id="FiB-ef-abu"/>
+                    <constraint firstItem="gb8-RL-EOO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="80" id="FiB-ef-abu"/>
                     <constraint firstAttribute="trailing" secondItem="gb8-RL-EOO" secondAttribute="trailing" constant="10" id="X6n-kG-1ie"/>
                     <constraint firstAttribute="trailing" secondItem="VMD-ix-LOa" secondAttribute="trailing" constant="10" id="fwM-20-EiU"/>
                     <constraint firstItem="gb8-RL-EOO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="n2j-Ho-IEn"/>
