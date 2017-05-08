@@ -16,7 +16,6 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var id: UILabel!
     @IBOutlet weak var retweetedStatus: UILabel!
     @IBOutlet weak var userName: UILabel!
-    
     @IBOutlet weak var userImageView: UIImageView!
     
     override func viewDidLoad() {
@@ -30,6 +29,7 @@ class TweetDetailViewController: UIViewController {
         self.id.text = tweet.id
         self.retweetedStatus.text = tweet.retweeted.description
         self.userName.text = tweet.user?.screenName
+        
         UIImage.fetchImageWith((tweet.user?.profileImageURL)!) { (image) in
             if let image = image {
                 self.userImageView.image = image
